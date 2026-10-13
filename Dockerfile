@@ -1,24 +1,32 @@
-# Specify the base Docker image. You can read more about
-# the available Docker images at https://docs.apify.com/sdk/js/#apify-docker-images
+# Multi-stage build matching Apify TypeScript Actor templates.
+# Builder installs devDependencies (typescript) and compiles to dist/.
+FROM apify/actor-node:20 AS builder
+
+COPY --chown=myuser:myuser package*.json ./
+
+RUN npm install --include=dev --audit=false
+
+COPY --chown=myuser:myuser . ./
+
+RUN npm run build
+
+# Final lean image — production deps + compiled JS only
 FROM apify/actor-node:20
 
-# Copy package files first for better layer caching
-COPY package*.json ./
+COPY --chown=myuser:myuser package*.json ./
 
-# Install all dependencies (including dev) so we can compile TypeScript
 RUN npm --quiet set progress=false \
-    && npm install \
+    && npm install --omit=dev --omit=optional \
     && echo "Installed NPM packages:" \
-    && (npm list --all || true) \
+    && (npm list --omit=dev --all || true) \
     && echo "Node.js version:" \
     && node --version \
     && echo "NPM version:" \
-    && npm --version
-
-# Copy source and build
-COPY . ./
-RUN npm run build \
-    && npm prune --omit=dev \
+    && npm --version \
     && rm -r ~/.npm
 
-CMD npm run start:prod --silent
+COPY --from=builder --chown=myuser:myuser /usr/src/app/dist ./dist
+
+COPY --chown=myuser:myuser . ./
+
+CMD ["node", "dist/main.js"]
