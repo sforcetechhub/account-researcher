@@ -1,99 +1,108 @@
 {
   "actorSpecification": 1,
   "fields": {
-    "companyName": {
-      "type": "string",
-      "title": "Company name",
-      "description": "Best-known company name"
-    },
-    "legalName": {
-      "type": ["string", "null"],
-      "title": "Legal name",
-      "description": "Legal/registered name when available"
-    },
-    "domain": {
-      "type": ["string", "null"],
-      "title": "Domain",
-      "description": "Registrable domain"
-    },
-    "website": {
-      "type": ["string", "null"],
-      "title": "Website",
-      "description": "Canonical website URL"
-    },
-    "description": {
-      "type": ["string", "null"],
-      "title": "Description",
-      "description": "Company description"
-    },
-    "industry": {
-      "type": ["string", "null"],
-      "title": "Industry",
-      "description": "Industry or sector"
-    },
-    "employeeCount": {
-      "type": ["integer", "null"],
-      "title": "Employee count",
-      "description": "Exact employee count when available"
-    },
-    "employeeBand": {
-      "type": ["string", "null"],
-      "title": "Employee band",
-      "description": "Employee range band"
-    },
-    "foundedYear": {
-      "type": ["integer", "null"],
-      "title": "Founded year",
-      "description": "Year the company was founded"
-    },
-    "location": {
-      "type": "object",
-      "title": "Location",
-      "description": "Headquarters / primary location",
-      "properties": {
-        "city": { "type": ["string", "null"] },
-        "region": { "type": ["string", "null"] },
-        "country": { "type": ["string", "null"] },
-        "fullAddress": { "type": ["string", "null"] },
-        "hq": { "type": ["string", "null"] }
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "companyName": {
+        "type": "string",
+        "title": "Company name",
+        "description": "Best-known company name"
+      },
+      "legalName": {
+        "type": ["string", "null"],
+        "title": "Legal name",
+        "description": "Legal/registered name when available"
+      },
+      "domain": {
+        "type": ["string", "null"],
+        "title": "Domain",
+        "description": "Registrable domain"
+      },
+      "website": {
+        "type": ["string", "null"],
+        "title": "Website",
+        "description": "Canonical website URL"
+      },
+      "description": {
+        "type": ["string", "null"],
+        "title": "Description",
+        "description": "Company description"
+      },
+      "industry": {
+        "type": ["string", "null"],
+        "title": "Industry",
+        "description": "Industry or sector"
+      },
+      "employeeCount": {
+        "type": ["integer", "null"],
+        "title": "Employee count",
+        "description": "Exact employee count when available"
+      },
+      "employeeBand": {
+        "type": ["string", "null"],
+        "title": "Employee band",
+        "description": "Employee range band"
+      },
+      "foundedYear": {
+        "type": ["integer", "null"],
+        "title": "Founded year",
+        "description": "Year the company was founded"
+      },
+      "location": {
+        "type": "object",
+        "title": "Location",
+        "description": "Headquarters / primary location",
+        "additionalProperties": true,
+        "properties": {
+          "city": { "type": ["string", "null"] },
+          "region": { "type": ["string", "null"] },
+          "country": { "type": ["string", "null"] },
+          "fullAddress": { "type": ["string", "null"] },
+          "hq": { "type": ["string", "null"] }
+        }
+      },
+      "socials": {
+        "type": "object",
+        "title": "Social profiles",
+        "description": "Discovered social media URLs",
+        "additionalProperties": true,
+        "properties": {
+          "linkedin": { "type": ["string", "null"] },
+          "twitter": { "type": ["string", "null"] },
+          "facebook": { "type": ["string", "null"] },
+          "instagram": { "type": ["string", "null"] },
+          "youtube": { "type": ["string", "null"] }
+        }
+      },
+      "logoUrl": {
+        "type": ["string", "null"],
+        "title": "Logo URL",
+        "description": "Company logo URL when available"
+      },
+      "phone": {
+        "type": ["string", "null"],
+        "title": "Phone",
+        "description": "Main phone number when available"
+      },
+      "matchConfidence": {
+        "type": "string",
+        "title": "Match confidence",
+        "description": "high | medium | low"
+      },
+      "sources": {
+        "type": "array",
+        "title": "Sources",
+        "description": "URLs used to build this record",
+        "items": { "type": "string" }
+      },
+      "query": {
+        "type": "string",
+        "title": "Query",
+        "description": "Original company name query"
       }
     },
-    "socials": {
-      "type": "object",
-      "title": "Social profiles",
-      "description": "Discovered social media URLs",
-      "properties": {
-        "linkedin": { "type": ["string", "null"] },
-        "twitter": { "type": ["string", "null"] },
-        "facebook": { "type": ["string", "null"] },
-        "instagram": { "type": ["string", "null"] },
-        "youtube": { "type": ["string", "null"] }
-      }
-    },
-    "logoUrl": {
-      "type": ["string", "null"],
-      "title": "Logo URL"
-    },
-    "phone": {
-      "type": ["string", "null"],
-      "title": "Phone"
-    },
-    "matchConfidence": {
-      "type": "string",
-      "title": "Match confidence",
-      "description": "high | medium | low"
-    },
-    "sources": {
-      "type": "array",
-      "title": "Sources",
-      "description": "URLs used to build this record",
-      "items": { "type": "string" }
-    },
-    "query": {
-      "type": "string",
-      "title": "Query",
-      "description": "Original company name query"
-    }
+    "additionalProperties": true
   },
   "views": {
     "overview": {
