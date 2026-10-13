@@ -1,0 +1,26 @@
+{
+  "name": "account-researcher",
+  "version": "1.0.0",
+  "description": "Apify Actor that researches companies from name/website/LinkedIn and returns firmographics, socials, and location.",
+  "type": "module",
+  "dependencies": {
+    "apify": "^3.4.2",
+    "crawlee": "^3.13.2",
+    "tldts": "^6.1.86"
+  },
+  "devDependencies": {
+    "@apify/tsconfig": "^0.1.1",
+    "@types/node": "^22.13.10",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "start": "npm run start:dev",
+    "start:prod": "node dist/main.js",
+    "start:dev": "tsx src/main.ts",
+    "build": "tsc",
+    "test": "echo \"Error: oops, the Actor has no tests yet, sad!\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

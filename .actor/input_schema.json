@@ -1,0 +1,42 @@
+{
+  "title": "Account Researcher Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companyName": {
+      "title": "Company name",
+      "type": "string",
+      "description": "Company name to research. When website/LinkedIn are omitted, the Actor searches the web for matching companies.",
+      "editor": "textfield",
+      "prefill": "Apify"
+    },
+    "website": {
+      "title": "Website",
+      "type": "string",
+      "description": "Optional company website or domain (e.g. https://apify.com or apify.com). Skips discovery and enriches this domain.",
+      "editor": "textfield"
+    },
+    "linkedinUrl": {
+      "title": "LinkedIn URL",
+      "type": "string",
+      "description": "Optional LinkedIn company page URL used as a seed/corroboration signal.",
+      "editor": "textfield"
+    },
+    "maxResults": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Maximum number of company matches to return when searching by name.",
+      "default": 5,
+      "minimum": 1,
+      "maximum": 20,
+      "editor": "number"
+    },
+    "countryCode": {
+      "title": "Country code",
+      "type": "string",
+      "description": "Optional two-letter country code to bias search results (e.g. us, in, gb).",
+      "editor": "textfield"
+    }
+  },
+  "required": ["companyName"]
+}

@@ -1,0 +1,19 @@
+{
+  "actorSpecification": 1,
+  "name": "account-researcher",
+  "title": "Account Researcher",
+  "description": "Research companies from a name (and optional website/LinkedIn). Returns domains, socials, location, and firmographics. Multiple matches are returned as separate dataset items.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "meta": {
+    "templateId": "ts-crawlee-cheerio"
+  },
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "minMemoryMbytes": 512,
+  "defaultMemoryMbytes": 1024
+}
